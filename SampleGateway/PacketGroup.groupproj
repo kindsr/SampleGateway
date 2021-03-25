@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{846FD125-F088-4135-B87A-2C3ABB6BD7D0}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="SampleGW.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\Practice_Byte\Practice_Byte.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="SampleGW">
+        <MSBuild Projects="SampleGW.dproj"/>
+    </Target>
+    <Target Name="SampleGW:Clean">
+        <MSBuild Projects="SampleGW.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="SampleGW:Make">
+        <MSBuild Projects="SampleGW.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Practice_Byte">
+        <MSBuild Projects="..\Practice_Byte\Practice_Byte.dproj"/>
+    </Target>
+    <Target Name="Practice_Byte:Clean">
+        <MSBuild Projects="..\Practice_Byte\Practice_Byte.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Practice_Byte:Make">
+        <MSBuild Projects="..\Practice_Byte\Practice_Byte.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="SampleGW;Practice_Byte"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="SampleGW:Clean;Practice_Byte:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="SampleGW:Make;Practice_Byte:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

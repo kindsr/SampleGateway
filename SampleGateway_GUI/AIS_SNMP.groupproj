@@ -1,0 +1,72 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{6442E320-0005-4F49-A108-FAE5F2179C85}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="..\TestGW_SNMP_Client\TestGW_SNMP_Client.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\TestGW_SNMP_Server\TestGW_SNMP_Server.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\ThreadIndyClient\ThreadedIndyClient.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="D:\Projects_Old\SelfPassMCUEmul\SelfPassMCUEmul.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="TestGW_SNMP_Client">
+        <MSBuild Projects="..\TestGW_SNMP_Client\TestGW_SNMP_Client.dproj"/>
+    </Target>
+    <Target Name="TestGW_SNMP_Client:Clean">
+        <MSBuild Projects="..\TestGW_SNMP_Client\TestGW_SNMP_Client.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="TestGW_SNMP_Client:Make">
+        <MSBuild Projects="..\TestGW_SNMP_Client\TestGW_SNMP_Client.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="TestGW_SNMP_Server">
+        <MSBuild Projects="..\TestGW_SNMP_Server\TestGW_SNMP_Server.dproj"/>
+    </Target>
+    <Target Name="TestGW_SNMP_Server:Clean">
+        <MSBuild Projects="..\TestGW_SNMP_Server\TestGW_SNMP_Server.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="TestGW_SNMP_Server:Make">
+        <MSBuild Projects="..\TestGW_SNMP_Server\TestGW_SNMP_Server.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="ThreadedIndyClient">
+        <MSBuild Projects="..\ThreadIndyClient\ThreadedIndyClient.dproj"/>
+    </Target>
+    <Target Name="ThreadedIndyClient:Clean">
+        <MSBuild Projects="..\ThreadIndyClient\ThreadedIndyClient.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ThreadedIndyClient:Make">
+        <MSBuild Projects="..\ThreadIndyClient\ThreadedIndyClient.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="SelfPassMCUEmul">
+        <MSBuild Projects="D:\Projects_Old\SelfPassMCUEmul\SelfPassMCUEmul.dproj"/>
+    </Target>
+    <Target Name="SelfPassMCUEmul:Clean">
+        <MSBuild Projects="D:\Projects_Old\SelfPassMCUEmul\SelfPassMCUEmul.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="SelfPassMCUEmul:Make">
+        <MSBuild Projects="D:\Projects_Old\SelfPassMCUEmul\SelfPassMCUEmul.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="TestGW_SNMP_Client;TestGW_SNMP_Server;ThreadedIndyClient;SelfPassMCUEmul"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="TestGW_SNMP_Client:Clean;TestGW_SNMP_Server:Clean;ThreadedIndyClient:Clean;SelfPassMCUEmul:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="TestGW_SNMP_Client:Make;TestGW_SNMP_Server:Make;ThreadedIndyClient:Make;SelfPassMCUEmul:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
